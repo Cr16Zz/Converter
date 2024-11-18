@@ -1,4 +1,3 @@
-# Converter
 import requests
 
 API_KEY = '99c699a371bf0efcea5da375'  # Ваш API-ключ
