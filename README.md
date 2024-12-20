@@ -3,17 +3,17 @@ import requests
 API_KEY = '99c699a371bf0efcea5da375'  # Ваш API-ключ
 BASE_URL = 'https://api.exchangerate-api.com/v4/latest/RUB'  # Базовый URL для API
 
-def get_exchange_rates():
+def get_exchange_rates():  # Объявление функции get_exchange_rates, которая отвечает за получение актуальных курсов валют.
     url = f"{BASE_URL}?app_id={API_KEY}"
-    response = requests.get(url)
-    if response.status_code == 200:
+    response = requests.get(url)  # Отправка GET-запроса по сформированному URL с использованием библиотеки requests.
+    if response.status_code == 200: # Проверка статуса ответа. Код 200 означает успешный запрос.
         data = response.json()
-        return data['rates']
+        return data['rates']  # Возврат словаря с курсами валют. Курсы находятся внутри ключа 'rates' в ответе API.
     else:
         print("Ошибка при получении данных с API")
-        return None
+        return None  # Если статус ответа отличается от 200, выводится сообщение об ошибке и возвращается None.
 
-def convert_rub_to_usd(amount, rates):
+def convert_rub_to_usd(amount, rates): # Объявление функции convert_rub_to_usd, которая конвертирует рубли в доллары США.
     if 'RUB' in rates and 'USD' in rates:
         rub_to_usd_rate = rates['USD'] / rates['RUB']
         return amount * rub_to_usd_rate
